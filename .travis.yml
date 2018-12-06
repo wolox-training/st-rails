@@ -1,0 +1,29 @@
+language: ruby
+rvm:
+  - 2.5.1
+
+env:
+  global:
+    - RUBY_GC_MALLOC_LIMIT=90000000
+    - RUBY_GC_HEAP_FREE_SLOTS=200000
+
+services:
+  - postgresql
+
+before_install:
+  - "echo 'gem: --no-document' > ~/.gemrc"
+  # Solves rainbow issue: https://github.com/sickill/rainbow/issues/48
+  - gem update --system
+
+before_script:
+  - cp config/database.travis.yml config/database.yml
+  - psql -c "DROP DATABASE IF EXISTS \"wbooksapi_test\";" -U postgres
+  - psql -c "CREATE DATABASE \"wbooksapi_test\" ENCODING 'utf8';" -U postgres
+  - bundle exec rake db:migrate
+
+script:
+  # - bundle exec rspec spec -fd
+  - bundle exec rubocop app -R --format simple
+
+cache:
+  bundler: true
