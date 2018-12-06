@@ -1,5 +1,9 @@
 # README
 
+WBooksAPI
+
+[![Build Status](https://travis-ci.com/wolox-training/st-rails.svg?branch=master)](https://travis-ci.com/wolox-training/st-rails)
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
