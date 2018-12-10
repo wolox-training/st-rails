@@ -3,5 +3,7 @@ class User < ApplicationRecord
 
   include DeviseTokenAuth::Concerns::User
 
+  has_many :rents, dependent: :nullify
+
   validates :first_name, :last_name, presence: true
 end
