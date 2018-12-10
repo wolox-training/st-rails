@@ -39,6 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise', '~> 4.5'
 gem 'devise_token_auth', '~> 1.0'
 gem 'rack-cors', require: 'rack/cors'
+gem 'versionist'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
