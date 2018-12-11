@@ -266,7 +266,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
-  database_cleaner
+  database_cleaner (~> 1.7.0)
   devise (~> 4.5)
   devise_token_auth (~> 1.0)
   factory_bot_rails (~> 4.11.1)
@@ -281,7 +281,7 @@ DEPENDENCIES
   rubocop (~> 0.61.1)
   sass-rails (~> 5.0)
   selenium-webdriver
-  shoulda-matchers
+  shoulda-matchers (~> 3.1.2)
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

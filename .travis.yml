@@ -25,7 +25,7 @@ before_script:
 script:
   # - bundle exec rspec spec -fd
   - bundle exec rubocop app -R --format simple
-  - bundle exec rspec
+  - bundle exec rspec -fd
 
 cache:
   bundler: true
