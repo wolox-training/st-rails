@@ -40,7 +40,7 @@ gem 'devise', '~> 4.5'
 gem 'devise_token_auth', '~> 1.0'
 gem 'versionist', '~>1.7.0'
 gem 'active_model_serializers', '~> 0.10.2'
-gem 'wor-paginate'
+gem 'wor-paginate', '~>0.1.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
