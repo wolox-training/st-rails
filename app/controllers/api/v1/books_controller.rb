@@ -12,7 +12,7 @@ module Api
       private
 
       def book
-        Book.find(params.require(:id_2))
+        Book.find(params.require(:id))
       end
     end
   end
