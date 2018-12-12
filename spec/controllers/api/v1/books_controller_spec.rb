@@ -24,7 +24,7 @@ RSpec.describe Api::V1::BooksController, type: :controller do
         end
 
         it 'includes all book ids' do
-          expected_book_ids = Book.pluck(:id)
+          expected_book_ids = books.pluck(:id)
           response_book_ids = JSON.parse(response.body)['page'].map {|b| b['id']}
           expect(expected_book_ids.sort).to eql(response_book_ids.sort)
         end
@@ -40,7 +40,7 @@ RSpec.describe Api::V1::BooksController, type: :controller do
 
   describe 'Get #show' do
     subject(:http_request) { get :show, params: params}
-    let!(:book) { create(:book) }
+    let(:book) { create(:book) }
 
     context 'When user is authenticated' do
       include_context 'Authenticated User'
@@ -70,6 +70,7 @@ RSpec.describe Api::V1::BooksController, type: :controller do
       end
     end
 
+    let(:params) { {id: book.id} }
     include_examples 'Unauthenticated User'
   end
 
