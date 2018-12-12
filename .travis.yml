@@ -29,3 +29,14 @@ script:
 
 cache:
   bundler: true
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: "l2Z6OsQPTA4b4Xx010GhVzw9AGO4X9yG1zgRBIqdjrQopHEau54UrU1C1toxTFO0X19RYVy4ErSDciDnuRjmki27C+vUm1Xot3fuiyDjKFrCuXufza8fPfbFJ+9tLOj96dnaomVizS+BWAc0L4rBnFPticKIS+2w/npfnAzkHx/qoWoaaMpKww936qOyPYZv4Ocgd8I2+h+l4yAlaPMtn9ac34EJD9an9qAZ8mujyIv+Ky54LyM9WlKJwVnVmCdlTKoSOQeSZtsJr3XDBAYQfJPj+HgzmkWDdagPcLh10IAoNxrSHjDG6SFRSau1DtJRzIx0s3lv3wM1oU/UZWg6wyukcTU91sb/xpWVCLuYKaKSU4nhS0hTzRIDh4zyt3KyogS4ZS8PFSGKH/BeuDUAnLTazmMwIDjH5cfnGjJ/cuyRMgGv1R5vN/R0fUt7Kiyu/dkDWhscVoyxfhbD5y9h16dLuY6eDgVVuZ1giBl0Hc5TIs6/st459t/X7DCc6tR2fGQig+8wBBlpuLHOSKWYUYu4qjg5OOKmhtgKpBMOaGkdGKCSyA9XLTNDWPxholOz4dxeEj2/T/qfc23zFGwW88+YYb5b5HMx7A98HsWCQmz4S+6zT21C9woyNN4cQ6QjxrCSCLxqLK5mQV4A8lzNRzKQ+FCBhfeSjxkZ/UZ1SR4="
+  app: st-wbooks
+  on: heroku
+  run:
+    - "rake db:migrate"
+    - restart
+    - "rake cleanup"
