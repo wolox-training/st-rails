@@ -19,7 +19,7 @@ RSpec.describe Api::V1::BooksController, type: :controller do
           expect(JSON.parse(response.body)).to be_paginated
         end
 
-        it 'serializes with BookSerializer' do
+        it 'is serialized with BookSerializer' do
           expect(JSON.parse(response.body)['page']).to have_been_serialized_with(BookSerializer)
         end
 
@@ -52,7 +52,7 @@ RSpec.describe Api::V1::BooksController, type: :controller do
       context 'When fetching an existing book' do
         let(:params) { {id: book.id} }
 
-        it 'serializes with BookSerializer' do
+        it 'is serialized with BookSerializer' do
           expect(JSON.parse(response.body)).to have_been_serialized_with(BookSerializer)
         end
 
