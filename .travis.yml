@@ -1,42 +1,33 @@
 language: ruby
 rvm:
   - 2.5.1
-
 env:
   global:
     - RUBY_GC_MALLOC_LIMIT=90000000
     - RUBY_GC_HEAP_FREE_SLOTS=200000
-
 services:
   - postgresql
-
 before_install:
-  - "echo '--colour' > ~/.rspec"
-  - "echo 'gem: --no-document' > ~/.gemrc"
-  # Solves rainbow issue: https://github.com/sickill/rainbow/issues/48
+  - echo '--colour' > ~/.rspec
+  - 'echo ''gem: --no-document'' > ~/.gemrc'
   - gem update --system
-
 before_script:
   - cp config/database.travis.yml config/database.yml
   - psql -c "DROP DATABASE IF EXISTS \"wbooksapi_test\";" -U postgres
   - psql -c "CREATE DATABASE \"wbooksapi_test\" ENCODING 'utf8';" -U postgres
   - bundle exec rake db:migrate
-
 script:
-  # - bundle exec rspec spec -fd
   - bundle exec rubocop app -R --format simple
   - bundle exec rspec -fd
-
 cache:
   bundler: true
-
 deploy:
   provider: heroku
   api_key:
-    secure: "l2Z6OsQPTA4b4Xx010GhVzw9AGO4X9yG1zgRBIqdjrQopHEau54UrU1C1toxTFO0X19RYVy4ErSDciDnuRjmki27C+vUm1Xot3fuiyDjKFrCuXufza8fPfbFJ+9tLOj96dnaomVizS+BWAc0L4rBnFPticKIS+2w/npfnAzkHx/qoWoaaMpKww936qOyPYZv4Ocgd8I2+h+l4yAlaPMtn9ac34EJD9an9qAZ8mujyIv+Ky54LyM9WlKJwVnVmCdlTKoSOQeSZtsJr3XDBAYQfJPj+HgzmkWDdagPcLh10IAoNxrSHjDG6SFRSau1DtJRzIx0s3lv3wM1oU/UZWg6wyukcTU91sb/xpWVCLuYKaKSU4nhS0hTzRIDh4zyt3KyogS4ZS8PFSGKH/BeuDUAnLTazmMwIDjH5cfnGjJ/cuyRMgGv1R5vN/R0fUt7Kiyu/dkDWhscVoyxfhbD5y9h16dLuY6eDgVVuZ1giBl0Hc5TIs6/st459t/X7DCc6tR2fGQig+8wBBlpuLHOSKWYUYu4qjg5OOKmhtgKpBMOaGkdGKCSyA9XLTNDWPxholOz4dxeEj2/T/qfc23zFGwW88+YYb5b5HMx7A98HsWCQmz4S+6zT21C9woyNN4cQ6QjxrCSCLxqLK5mQV4A8lzNRzKQ+FCBhfeSjxkZ/UZ1SR4="
+    secure: kJzi0+FF+U6kChu+F5+tRumjffE8J4onJXAh8fp0syUnlr8cncPXPColJlH7twJsL4ddFL5dxsq2gncD0VDWV7BMTQoUXKzgIz0Gy0uzhq/A2ZP2rOSQZ1Bhr9wyp9WXp6ggVB6VwsKLIZDGwc0Gsu9av+/sN3uemqLa35MRVF5RUFmhXz/bsIgnLawZEsFG1V0DMMMsaBRdSlvDmOevravSjejs5Qsp054eBoaezNsKxJV8oRPMpI6l3y82EFJkn/eULyxl4+oOy9scLAft4XpUUBrF/Gsz+A1qkPTJdXhsuYZnUnGmgnzHSjC7G1+pVxW+VJY98G0Ud/qrtaOiG/QWY+DJcJdt9/YDa42YxtQ/FpBWtTr9+/H99NVuSCSk0GM1dt6YdAyCvf78XuNbdN/MgZAeu7/Og0rIORXcjZq3R2VNX3OTIlWPXG5439+yNV7yvup1xyZ9QXVEZ/qXNvbJsNMPUX2xESMaMxAxO65PiazVMKqvAOVepA2gPWAUw4P0w5M4+zm4u7bYs1wz+mJqTzP5o7qgqVax7ZV7zbRiD1gft1Sjd95iY51FguRxza7Eu5vUu57m7VxBFxWU5v8lq+A++NYbtq3pRCQ3FBQ6axbwgm3WfaxqN5t/5m3pGmjcDbIvZQGPmdqSzyAOV68zp4ITAAP+pdwilvPBzhk=
   app: st-wbooks
-  on: heroku
+    on: heroku
   run:
-    - "rake db:migrate"
+    - rake db:migrate
     - restart
-    - "rake cleanup"
+    - rake cleanup
