@@ -2,7 +2,7 @@ module Api
   module V1
     class RentsController < ApiV1Controller
       def index
-        render_paginated Rent.rented_by(user_id)
+        render_paginated Rent.rented_by(user_id).includes(:user, :book)
       end
 
       def create
