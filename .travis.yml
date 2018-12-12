@@ -30,4 +30,3 @@ deploy:
   run:
     - rake db:migrate
     - restart
-    - rake cleanup
