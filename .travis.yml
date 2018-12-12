@@ -26,7 +26,7 @@ deploy:
   api_key:
     secure: kJzi0+FF+U6kChu+F5+tRumjffE8J4onJXAh8fp0syUnlr8cncPXPColJlH7twJsL4ddFL5dxsq2gncD0VDWV7BMTQoUXKzgIz0Gy0uzhq/A2ZP2rOSQZ1Bhr9wyp9WXp6ggVB6VwsKLIZDGwc0Gsu9av+/sN3uemqLa35MRVF5RUFmhXz/bsIgnLawZEsFG1V0DMMMsaBRdSlvDmOevravSjejs5Qsp054eBoaezNsKxJV8oRPMpI6l3y82EFJkn/eULyxl4+oOy9scLAft4XpUUBrF/Gsz+A1qkPTJdXhsuYZnUnGmgnzHSjC7G1+pVxW+VJY98G0Ud/qrtaOiG/QWY+DJcJdt9/YDa42YxtQ/FpBWtTr9+/H99NVuSCSk0GM1dt6YdAyCvf78XuNbdN/MgZAeu7/Og0rIORXcjZq3R2VNX3OTIlWPXG5439+yNV7yvup1xyZ9QXVEZ/qXNvbJsNMPUX2xESMaMxAxO65PiazVMKqvAOVepA2gPWAUw4P0w5M4+zm4u7bYs1wz+mJqTzP5o7qgqVax7ZV7zbRiD1gft1Sjd95iY51FguRxza7Eu5vUu57m7VxBFxWU5v8lq+A++NYbtq3pRCQ3FBQ6axbwgm3WfaxqN5t/5m3pGmjcDbIvZQGPmdqSzyAOV68zp4ITAAP+pdwilvPBzhk=
   app: st-wbooks
-    on: heroku
+  on: heroku
   run:
     - rake db:migrate
     - restart
