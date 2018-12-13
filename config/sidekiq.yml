@@ -1,0 +1,6 @@
+---
+concurrency: <%= ENV['SIDEKIQ_CONCURRENCY'] || 1 %>
+queues:
+  - default
+  - mailers
+logfile: ./log/sidekiq.log

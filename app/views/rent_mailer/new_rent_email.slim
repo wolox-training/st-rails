@@ -1,0 +1,12 @@
+
+h1 
+  | You have registered a new rent for the book 
+  = @rent.book.title
+p 
+  | Starting on: 
+  b
+    =@rent.start_date
+p 
+  | Ending on: 
+  b
+    =@rent.end_date
