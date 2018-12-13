@@ -23,5 +23,4 @@ test:
   database: wbooks-api-test
 
 production:
-  <<: *default
-  database: wbooks-api-prod
+  url: <%= ENV['DATABASE_URL'] %>
