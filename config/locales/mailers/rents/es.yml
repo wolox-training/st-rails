@@ -1,0 +1,8 @@
+es:
+  rent_mailer:
+    new_rent:
+      subject: Se ha registrado un nuevo prestamo
+      body: 
+        title: Has registrado un nuevo prestamo del libro 
+        starting_on: 'Comenzando en:'
+        ending_on: 'Terminando en:'

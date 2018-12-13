@@ -1,12 +1,15 @@
 
 h1 
-  | You have registered a new rent for the book 
+  = t('rent_mailer.new_rent.body.title') 
+  '
   = @rent.book.title
 p 
-  | Starting on: 
+  = t('rent_mailer.new_rent.body.starting_on')
+  '
   b
     =@rent.start_date
 p 
-  | Ending on: 
+  = t('rent_mailer.new_rent.body.ending_on')
+  '
   b
     =@rent.end_date
