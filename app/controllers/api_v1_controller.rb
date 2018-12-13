@@ -5,6 +5,7 @@ class ApiV1Controller < ActionController::Base
   before_action :authenticate_api_v1_users_user!
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ActionController::ParameterMissing, with: :parameter_missing
+  rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
 
   def record_not_found
     render json: {
@@ -20,5 +21,11 @@ class ApiV1Controller < ActionController::Base
         exception.message
       ]
     }, status: :bad_request
+  end
+
+  def record_invalid(exception)
+    render json: {
+      errors: exception.record.errors.full_messages
+    }, status: :unprocessable_entity
   end
 end

@@ -7,16 +7,14 @@ module Api
 
       def create
         rent = Rent.new(rent_params)
-        if rent.save
-          render json: rent, status: :created
-        else
-          render json: { errors: rent.errors.full_messages }, status: :unprocessable_entity
-        end
+        rent.save!
+        render json: rent, status: :created
       end
 
       private
 
       def rent_params
+        params.require(:rent).require(%I[user_id book_id start_date end_date])
         params.require(:rent).permit(:user_id, :book_id, :start_date, :end_date)
       end
 
