@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   api_version(module: "api/v1", path: {value: "api/v1"}) do
     resources :books,  only: [:index, :show]
 
-    scope 'users/:user_id' do
+    resources :users, only: :none do
       resources :rents,  only: [:index, :create]
     end
 
