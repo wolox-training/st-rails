@@ -6,8 +6,7 @@ module Api
       end
 
       def create
-        rent = Rent.new(rent_params)
-        rent.save!
+        rent = Rent.create!(rent_params)
         render json: rent, status: :created
       end
 
