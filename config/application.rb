@@ -18,12 +18,5 @@ module WBooksAPI
     config.active_job.queue_adapter = :sidekiq
 
     config.action_mailer.delivery_method = :smtp
-    config.action_mailer.smtp_settings = {
-      user_name: ENV['SMTP_USER_NAME'],
-      password: ENV['SMTP_PASSWORD'],
-      address: ENV['SMTP_ADDRESS'],
-      domain: ENV['SMTP_DOMAIN'],
-      port: ENV['SMTP_PORT']
-    }
   end
 end
