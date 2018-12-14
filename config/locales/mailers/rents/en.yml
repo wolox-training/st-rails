@@ -3,6 +3,6 @@ en:
     new_rent:
       subject: New rent has been registered
       body: 
-        title: You have registered a new rent for the book 
-        starting_on: 'Starting on:'
-        ending_on: 'Ending on:'
+        title: 'You have registered a new rent for the book '
+        starting_on: 'Starting on: '
+        ending_on: 'Ending on: '
