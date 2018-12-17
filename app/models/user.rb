@@ -9,4 +9,8 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, :locale, presence: true
   validates :locale, inclusion: LOCALES
+
+  def display_name
+    email
+  end
 end
