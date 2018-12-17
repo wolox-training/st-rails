@@ -1,0 +1,12 @@
+
+h1 
+  = t('rent_mailer.new_rent.body.title')
+  = @rent.book.title
+p 
+  = t('rent_mailer.new_rent.body.starting_on')
+  b
+    =@rent.start_date
+p 
+  = t('rent_mailer.new_rent.body.ending_on')
+  b
+    =@rent.end_date
