@@ -2,11 +2,13 @@ module Api
   module V1
     class RentsController < ApiV1Controller
       def index
-        render_paginated Rent.rented_by(user_id).includes(:user, :book)
+        render_paginated policy_scope(Rent).includes(:user, :book)
       end
 
       def create
-        rent = Rent.create!(rent_params)
+        rent = Rent.new(rent_params)
+        authorize rent
+        rent.save!
         RentMailer.with(rent_id: rent.id).new_rent_email.deliver_later
         render json: rent, status: :created
       end
