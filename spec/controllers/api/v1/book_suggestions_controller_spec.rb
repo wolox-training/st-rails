@@ -30,6 +30,14 @@ RSpec.describe Api::V1::BookSuggestionsController, type: :controller do
           http_request
         end.to change {BookSuggestion.count}.by 1
       end
+
+      context 'When user is authenticated' do
+        include_context 'Authenticated User'
+        it 'creates a book with the logged in user id' do
+          http_request
+          expect(BookSuggestion.last.user_id).to eq User.last.id 
+        end
+      end
     end
 
     context 'When creating an invalid book suggestion' do
@@ -58,29 +66,6 @@ RSpec.describe Api::V1::BookSuggestionsController, type: :controller do
         end.to change {BookSuggestion.count}.by 0
       end
     end
-
-    context 'When user is authenticated' do
-      include_context 'Authenticated User'
-
-      context 'When creating a valid book suggestion' do
-        let(:params) { {book_suggestion: {
-                        author: "Vallie Kulas", 
-                        title: "The Moon by Night", 
-                        link: "http://veum.co/paris", 
-                        editor: "Noone", 
-                        year: "2012", 
-                        price: "59.75", 
-                        synopsis: "This book is about..."}}}
-
-        it 'creates a book with the logged in user id' do
-          http_request
-          expect(BookSuggestion.last.user_id).to eq User.last.id 
-        end
-
-      end
-
-    end
-
 
   end
 
