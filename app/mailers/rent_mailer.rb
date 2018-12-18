@@ -4,4 +4,10 @@ class RentMailer < ApplicationMailer
     I18n.locale = @rent.user.locale
     mail(to: @rent.user.email, subject: I18n.t('rent_mailer.new_rent.subject'))
   end
+
+  def expired_rent_email
+    @rent = params[:rent]
+    I18n.locale = @rent.user.locale
+    mail(to: @rent.user.email, subject: I18n.t('rent_mailer.expired_rent.subject'))
+  end
 end
