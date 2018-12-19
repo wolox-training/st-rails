@@ -6,7 +6,7 @@ RSpec.describe Api::V1::BookSuggestionsController, type: :controller do
     subject(:http_request) { post :create, params: params}
 
     context 'When creating a valid book suggestion' do
-      let(:params) { build(:book_suggestion_hash)}
+      let(:params) { { book_suggestion: attributes_for(:book_suggestion) } }
 
       it 'is serialized with BookSerializer' do
         http_request
@@ -26,20 +26,20 @@ RSpec.describe Api::V1::BookSuggestionsController, type: :controller do
 
       it 'creates a book suggestion without user id' do
         http_request
-        expect(BookSuggestion.last.user_id).to be_nil
+        expect(BookSuggestion.find(JSON.parse(response.body)['id']).user_id).to be_nil
       end
 
       context 'When user is authenticated' do
         include_context 'Authenticated User'
         it 'creates a book suggestion with the logged in user id' do
           http_request
-          expect(BookSuggestion.last.user_id).to eq User.last.id 
+          expect(BookSuggestion.find(JSON.parse(response.body)['id']).user_id).to eq user.id 
         end
       end
     end
 
     context 'When creating an invalid book suggestion' do
-      let(:params) { build(:book_suggestion_hash, author: nil)}
+      let(:params) { { book_suggestion: attributes_for(:book_suggestion, author: nil) } }
 
       it 'responds with 400 status' do
         http_request
