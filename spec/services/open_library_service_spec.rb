@@ -6,7 +6,7 @@ RSpec.describe OpenLibraryService do
   describe '#book_info' do
     subject(:book_info) { OpenLibraryService.new.book_info(isbn) }
 
-    context 'When ISBN is valid' do
+    context 'When ISBN exists' do
       let(:isbn) { '0385472579' }
 
       before do
@@ -25,7 +25,7 @@ RSpec.describe OpenLibraryService do
 
     end
 
-    context 'When ISBN is invalid' do 
+    context 'When ISBN does not' do 
       
       let(:isbn) { '1' }
 
