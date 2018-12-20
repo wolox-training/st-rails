@@ -74,4 +74,54 @@ RSpec.describe Api::V1::BooksController, type: :controller do
     include_examples 'Unauthenticated User'
   end
 
+  describe 'GET #info' do
+    subject(:http_request) { get :info, params: params}
+    
+
+    context 'When user is authenticated' do
+      include_context 'Authenticated User'
+
+      context 'When fetching an existing book' do
+        before do
+          open_library_stubbed_service = instance_double(OpenLibraryService)
+          allow(open_library_stubbed_service).to receive(:book_info).and_return(
+            JSON.parse(File.read('spec/support/fixtures/open_library_service_parsed_response.json')).symbolize_keys)
+          allow(OpenLibraryService).to receive(:new).and_return(open_library_stubbed_service)
+          http_request
+        end
+
+        let(:params) { { isbn: '0385472579' } }
+        it 'responds with the book info' do
+          expect(JSON.parse(response.body)).to eql(JSON.parse(File.read('spec/support/fixtures/open_library_service_parsed_response.json')))
+        end
+
+        it 'responds with 200 status' do
+          expect(response).to have_http_status(:ok)
+        end
+      end
+
+      context 'When fetching a non existing book' do
+        before do
+          open_library_stubbed_service = instance_double(OpenLibraryService)
+          allow(open_library_stubbed_service).to receive(:book_info).and_return({})
+          allow(OpenLibraryService).to receive(:new).and_return(open_library_stubbed_service)
+          http_request
+        end
+
+        let(:params) { { isbn: '0' } }
+        it 'responds with and empty json' do
+          expect(JSON.parse(response.body)).to eql({})
+        end
+
+        it 'responds with 404 status' do
+          expect(response).to have_http_status(:not_found)
+        end
+      end
+
+    end
+
+    let(:params) { { isbn: '0385472579' } }
+    include_examples 'Unauthenticated User'
+  end
+
 end
