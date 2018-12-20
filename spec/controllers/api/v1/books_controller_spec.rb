@@ -118,6 +118,18 @@ RSpec.describe Api::V1::BooksController, type: :controller do
         end
       end
 
+      context 'When isbn param is not present' do
+        before do
+          http_request
+        end
+
+        let(:params) { { isbn: nil } }
+
+        it 'responds with 400 status' do
+          expect(response).to have_http_status(:bad_request)
+        end
+      end
+
     end
 
     let(:params) { { isbn: '0385472579' } }
