@@ -17,17 +17,9 @@ class Rent < ApplicationRecord
   end
 
   def overlaping_rent_exists?
-    condition_params = { end_date: end_date, start_date: start_date }
-    overlaping_rent = Rent.where(book_id: book_id).where(book_availability_conditions,
-                                                         condition_params)
+    overlaping_rent = book.rents.where('start_date <= :end_date AND end_date >= :start_date',
+                                       end_date: end_date, start_date: start_date)
     overlaping_rent = overlaping_rent.where.not(id: id) if id.present?
     overlaping_rent.exists?
-  end
-
-  def book_availability_conditions
-    'start_date <= :start_date AND end_date >= :start_date
-     OR start_date <= :end_date AND end_date >= :end_date
-     OR start_date >= :start_date AND start_date <= :end_date
-     OR end_date >= :start_date AND end_date <= :end_date'
   end
 end
