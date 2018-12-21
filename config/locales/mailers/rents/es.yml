@@ -6,3 +6,8 @@ es:
         title: 'Has registrado un nuevo prestamo del libro '
         starting_on: 'Comenzando en: '
         ending_on: 'Terminando en: '
+    expired_rent:
+      subject: Tu prestamo está cerca de terminar
+      body: 
+        title: 'Tu prestamo del libro "%{title}" expira hoy'
+        paragraph: 'Por favor recuerda devolverlo lo antes posible'

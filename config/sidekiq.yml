@@ -4,3 +4,7 @@ queues:
   - default
   - mailers
 logfile: ./log/sidekiq.log
+:schedule:
+  notify_expired_rents:
+    cron: '0 0 9 * * * Etc/GMT-3'
+    class: NotifyExpiredRentsJob
