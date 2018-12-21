@@ -4,3 +4,9 @@ Metrics/LineLength:
   Max: 99
 FrozenStringLiteralComment:
   Enabled: false
+Style/ExpandPathArguments:
+  Exclude:
+    - 'spec/**/*.rb'
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'

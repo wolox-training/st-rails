@@ -77,6 +77,8 @@ group :test do
   gem 'chromedriver-helper'
   gem 'database_cleaner', '~>1.7.0'
   gem 'shoulda-matchers', '~>3.1.2'
+  gem 'webmock', '~>3.4.2'
+  gem 'rspec-mocks', '~>3.8.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
