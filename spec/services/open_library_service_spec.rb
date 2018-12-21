@@ -7,20 +7,20 @@ RSpec.describe OpenLibraryService do
     subject(:book_info) { OpenLibraryService.new.book_info(isbn) }
 
     context 'When ISBN exists' do
-      let(:isbn) { '0385472579' }
+      let(:isbn) { Faker::Number.number(10).to_s }
 
       before do
-        mock_open_library_request_valid_isbn
+        mock_open_library_request_valid_isbn(isbn)
         book_info
       end
 
       it 'makes an external request' do
         expect(WebMock).to(have_requested(:get, 'https://openlibrary.org/api/books').
-          with(query: { format: 'json', jscmd: 'data', bibkeys: "ISBN:0385472579" }))
+          with(query: { format: 'json', jscmd: 'data', bibkeys: "ISBN:#{isbn}" }))
       end
 
       it 'returns a hash with the book main info' do
-        expect(book_info).to eq(JSON.parse(File.read('spec/support/fixtures/open_library_service_parsed_response.json')).symbolize_keys)
+        expect(book_info).to eq(JSON.parse(File.read('spec/support/fixtures/open_library_service_parsed_response.json').gsub('#{isbn}', isbn)).symbolize_keys)
       end
 
     end

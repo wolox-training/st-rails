@@ -1,5 +1,5 @@
 { 
-  "isbn":"0385472579",
+  "isbn":"#{isbn}",
   "title":"Zen speaks",
   "subtitle":"shouts of nothingness",
   "number_of_pages":159,

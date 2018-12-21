@@ -1,11 +1,11 @@
 {
-  "ISBN:0385472579": 
+  "ISBN:#{isbn}": 
   {
     "publishers": [{"name": "Anchor Books"}], 
     "pagination": "159 p. :",
     "identifiers": {
                     "lccn": ["93005405"], "openlibrary": ["OL1397864M"], 
-                    "isbn_10": ["0385472579"], "librarything": ["192819"], 
+                    "isbn_10": ["#{isbn}"], "librarything": ["192819"], 
                     "goodreads": ["979250"]
                   }, 
     "subtitle": "shouts of nothingness", 
