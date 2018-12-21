@@ -17,7 +17,7 @@ before_script:
   - psql -c "CREATE DATABASE \"wbooksapi_test\" ENCODING 'utf8';" -U postgres
   - bundle exec rake db:migrate
 script:
-  - bundle exec rubocop app -R --format simple
+  - bundle exec rubocop app spec -R --format simple
   - bundle exec rspec -fd
 cache:
   bundler: true
