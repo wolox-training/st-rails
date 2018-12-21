@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::BookSuggestionsController, type: :controller do
-
   describe 'Post #create' do
-    subject(:http_request) { post :create, params: params}
+    subject(:http_request) { post :create, params: params }
 
     context 'When creating a valid book suggestion' do
       let(:params) { { book_suggestion: attributes_for(:book_suggestion) } }
@@ -19,9 +18,9 @@ RSpec.describe Api::V1::BookSuggestionsController, type: :controller do
       end
 
       it 'creates a new book suggestion' do
-        expect do 
+        expect do
           http_request
-        end.to change {BookSuggestion.count}.by 1
+        end.to change { BookSuggestion.count }.by 1
       end
 
       it 'creates a book suggestion without user id' do
@@ -33,7 +32,7 @@ RSpec.describe Api::V1::BookSuggestionsController, type: :controller do
         include_context 'Authenticated User'
         it 'creates a book suggestion with the logged in user id' do
           http_request
-          expect(BookSuggestion.find(JSON.parse(response.body)['id']).user_id).to eq user.id 
+          expect(BookSuggestion.find(JSON.parse(response.body)['id']).user_id).to eq user.id
         end
       end
     end
@@ -52,12 +51,10 @@ RSpec.describe Api::V1::BookSuggestionsController, type: :controller do
       end
 
       it 'does not create a new book suggestion' do
-        expect do 
+        expect do
           http_request
-        end.to change {BookSuggestion.count}.by 0
+        end.to change { BookSuggestion.count }.by 0
       end
     end
-
   end
-
 end
