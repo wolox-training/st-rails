@@ -6,3 +6,8 @@ en:
         title: 'You have registered a new rent for the book '
         starting_on: 'Starting on: '
         ending_on: 'Ending on: '
+    expired_rent:
+      subject: Your rent is about to expire
+      body: 
+        title: 'Your rent for the book "%{title}" expires today'
+        paragraph: 'Please remember to return the book as soon as possible'

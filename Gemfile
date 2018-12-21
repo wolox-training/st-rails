@@ -48,6 +48,7 @@ gem 'i18n', '~> 1.1.1'
 gem 'activeadmin', '~> 1.4'
 gem 'pundit', '~> 2.0'
 gem 'httparty', '~> 0.16.3'
+gem 'sidekiq-scheduler', '~> 3.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
